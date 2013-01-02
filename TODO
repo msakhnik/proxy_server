@@ -1,0 +1,9 @@
+Open port
+Listen on port
+Get all request sent from the client to that port
+Determine if it is a valid HTTP request
+Extract the request components
+Rebuild the request according to what type of proxy you are
+Send the new request
+Get the response
+Send response to client

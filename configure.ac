@@ -8,6 +8,11 @@ AC_PROG_CXX
 
 AC_PROG_CPP
 
+AC_LANG_PUSH([C++])
+AC_CHECK_HEADERS([boost/foreach.hpp], [],
+    [AC_MSG_ERROR(You need the Boost libraries.)])
+AC_LANG_POP([C++])
+
 AC_ARG_ENABLE(unittests,
    [  --enable-unittests      build unittests],
    ENABLE_UNITTEST=$enableval)
