@@ -4,7 +4,6 @@
 #include <cstring>
 #include <vector>
 
-
 #include "ProxyServer.h"
 
 using namespace std;
@@ -66,6 +65,14 @@ int main(int argc, char** argv)
             return 1;
         }
     }
-    server.StartServer();
+    if  (server.StartServer())
+    {
+        cout << "Connection was succesfully created" << endl;
+        cout << "Listening" << endl << endl;
+        
+        if (server.CreateConnection())
+            cerr << "Close connection" << endl;
+    }
+        
     return 0;
 }

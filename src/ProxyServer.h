@@ -12,6 +12,7 @@
 #include<signal.h>
 #include<fcntl.h>
 #include <sys/epoll.h>
+#include <vector>
 
 class cProxyServer
 {
@@ -20,8 +21,8 @@ public:
     ~cProxyServer();
     void SetPort(int num) { _port = num; };
     int GetPort() { return _port; };
-    int CreateConnection();
-    bool StartServer();
+    bool CreateConnection();
+    bool StartServer();    
 private:
     int _port;
     struct sockaddr_in _clientaddr;
@@ -30,4 +31,12 @@ private:
     struct addrinfo _hints;
     int _listenfd;
     int _max_connections;
+    std::vector<int> _clients;
+    static const int _conmax = 1000;
+    static const int _message_lenght = 999999;
+    int _efd;
+    struct epoll_event _event;
+    struct epoll_event *_events;
+    bool _InitEpol();
+    void  _Respond(int n);
 };
